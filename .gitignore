@@ -1,3 +1,5 @@
 *X
 .idea
-data_raw.cvs
+data_raw.csv
+data_processed.csv
+/by_region.png
