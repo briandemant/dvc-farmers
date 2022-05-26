@@ -10,9 +10,9 @@ wget.download(url, zip_name)
 
 # Unzip it and standardize the .csv filename
 import zipfile
-with zipfile.ZipFile(zip_name,"r") as zip_ref:
+
+with zipfile.ZipFile(zip_name, "r") as zip_ref:
     zip_ref.filelist[0].filename = 'data_raw.csv'
     zip_ref.extract(zip_ref.filelist[0])
 
 os.remove(zip_name)
-
