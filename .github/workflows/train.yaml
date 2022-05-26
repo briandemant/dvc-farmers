@@ -11,8 +11,11 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # pip install pipenv
-          eval "$(/root/.pyenv/bin/pyenv init -)"
-          /root/.pyenv/bin/pyenv local 3.9.13
+          export PYENV_ROOT="/root/.pyenv"
+          export PATH="$PYENV_ROOT/bin:$PATH"
+          eval "$(pyenv init -)"
+          
+          pyenv local 3.9.13
           python --version
           pipenv install
           dvc repro 
