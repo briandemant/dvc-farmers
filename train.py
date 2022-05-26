@@ -33,11 +33,17 @@ yhat = cross_val_predict(clf, X, y, cv=5)
 acc = np.mean(yhat == y)
 tn, fp, fn, tp = confusion_matrix(y, yhat).ravel()
 specificity = tn / (tn + fp)
-sensitivity = tp / (tp + fn)
+sensitivity = tp / (tp + fn)  # aka Recall
+precision = tp / (tp + fp)
 
 # Now print to file
 with open("metrics.json", 'w') as outfile:
-    json.dump({"accuracy": acc, "specificity": specificity, "sensitivity": sensitivity}, outfile)
+    json.dump({
+        "accuracy": acc,
+        "specificity": specificity,
+        "sensitivity": sensitivity,
+        "precision": precision,
+    }, outfile, indent=2)
 
 # Let's visualize within several slices of the dataset
 score = yhat == y
@@ -45,7 +51,6 @@ score_int = [int(s) for s in score]
 df['pred_accuracy'] = score_int
 
 # Bar plot by region
-
 sns.set_color_codes("dark")
 ax = sns.barplot(x="region", y="pred_accuracy", data=df, palette="Greens_d")
 ax.set(xlabel="Region", ylabel="Model accuracy")
