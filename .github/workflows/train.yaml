@@ -11,6 +11,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # pip install pipenv
+          pyenv local 3.9.13
           python --version
           pipenv install
           dvc repro 
