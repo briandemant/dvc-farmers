@@ -10,7 +10,8 @@ jobs:
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          pip install pipenv
+          # pip install pipenv
+          python --version
           pipenv install
           dvc repro 
 
