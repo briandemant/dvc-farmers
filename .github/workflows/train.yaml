@@ -2,7 +2,7 @@ name: dvc-farmers
 on: [push]
 jobs:
   run:
-    runs-on: [3.9-buster]
+    runs-on: [3.9-buster,self-hosted]
     container: docker://dvcorg/cml-py3:latest
     steps:
       - uses: actions/checkout@v2
